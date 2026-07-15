@@ -4,201 +4,183 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>정부 사이트 모음 · 한국 공공서비스 길잡이</title>
+<link rel="icon" type="image/svg+xml" href="logo.svg">
 <style>
   :root{
-    --ink:#13233b;
-    --ink-soft:#4a5a72;
-    --paper:#f5f3ec;
-    --card:#ffffff;
-    --line:#dcd8cb;
-    --seal:#b6432f;
-    --seal-soft:#e8cfc8;
-    --gov:#1d4e89;
-    --gov-soft:#e3ecf6;
-    --focus:#1d4e89;
+    --bg:#0f1a2e;
+    --bg2:#16233d;
+    --card:#1b2b49;
+    --card-hover:#22355a;
+    --line:#2c4066;
+    --text:#eaf0fb;
+    --muted:#93a4c4;
+    --muted2:#6f82a6;
+    --blue:#4f83f0;
+    --blue-bright:#6f9dff;
+    --violet:#7b6cf0;
+    --grad:linear-gradient(120deg,#4f83f0,#7b6cf0);
+    --grad-soft:linear-gradient(120deg,rgba(79,131,240,.16),rgba(123,108,240,.16));
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
     font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
-    background:var(--paper);
-    color:var(--ink);
-    line-height:1.6;
+    background:radial-gradient(1200px 600px at 50% -200px,#1d2f52,transparent),var(--bg);
+    color:var(--text);line-height:1.65;min-height:100vh;
   }
-  a{color:inherit;}
+  a{color:inherit;text-decoration:none;}
 
-  /* Header */
-  header{
-    background:var(--ink);
-    color:#fff;
-    padding:0;
-    border-bottom:4px solid var(--seal);
-  }
-  .head-inner{
-    max-width:1080px;margin:0 auto;padding:28px 24px 26px;
-    display:flex;align-items:flex-start;gap:18px;
-  }
-  .seal{
-    flex:0 0 auto;width:50px;height:50px;border-radius:50%;
-    border:2px solid var(--seal-soft);
-    display:flex;align-items:center;justify-content:center;
-    background:radial-gradient(circle at 35% 30%, #c9543e, var(--seal));
-    font-size:22px;
-  }
-  .head-text h1{
-    margin:0;font-size:1.55rem;letter-spacing:-0.01em;font-weight:800;
-  }
-  .head-text p{
-    margin:4px 0 0;color:#b9c4d6;font-size:0.92rem;
-  }
+  /* 공지 배너 */
   .notice{
-    background:var(--seal);color:#fff;font-size:0.82rem;
-    text-align:center;padding:7px 16px;
+    background:var(--grad);color:#fff;font-size:0.9rem;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    padding:11px 44px 11px 16px;position:relative;text-align:center;
   }
+  .notice .badge{background:rgba(255,255,255,.22);padding:2px 10px;border-radius:999px;font-weight:700;font-size:0.8rem;}
   .notice b{font-weight:700;}
+  .notice .x{position:absolute;right:14px;top:50%;transform:translateY(-50%);
+    width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.2);
+    border:none;color:#fff;cursor:pointer;font-size:1rem;line-height:1;}
+  .notice .x:hover{background:rgba(255,255,255,.35);}
+  .notice.hide{display:none;}
 
-  /* Search + filters */
-  .controls{
-    max-width:1080px;margin:0 auto;padding:26px 24px 6px;
+  /* 히어로 */
+  .hero{max-width:940px;margin:0 auto;padding:56px 24px 30px;text-align:center;}
+  .logo-badge{
+    width:82px;height:82px;border-radius:22px;margin:0 auto 22px;
+    background:var(--grad);display:flex;align-items:center;justify-content:center;
+    box-shadow:0 14px 40px rgba(79,131,240,.4);
   }
-  .search-wrap{position:relative;margin-bottom:16px;}
+  .logo-badge svg{width:52px;height:52px;}
+  .hero h1{margin:0 0 12px;font-size:2.4rem;font-weight:800;letter-spacing:-0.02em;}
+  .hero h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero p{margin:0 auto;max-width:560px;color:var(--muted);font-size:1.05rem;}
+  .hero .warn{
+    margin:22px auto 0;max-width:600px;font-size:0.86rem;color:#ffd9c2;
+    background:rgba(214,80,47,.14);border:1px solid rgba(214,80,47,.35);
+    border-radius:12px;padding:10px 16px;
+  }
+
+  /* 검색/필터 */
+  .controls{max-width:940px;margin:0 auto;padding:26px 24px 6px;}
+  .search-wrap{position:relative;margin-bottom:18px;}
   #search{
-    width:100%;padding:14px 16px 14px 44px;font-size:1rem;
-    border:1.5px solid var(--line);border-radius:10px;background:var(--card);
-    color:var(--ink);
+    width:100%;padding:16px 18px 16px 48px;font-size:1rem;color:var(--text);
+    border:1.5px solid var(--line);border-radius:14px;background:var(--card);
   }
-  #search:focus{outline:3px solid var(--gov-soft);border-color:var(--gov);}
-  .search-wrap svg{position:absolute;left:15px;top:14px;opacity:.5;}
-  .filters{display:flex;flex-wrap:wrap;gap:8px;}
+  #search::placeholder{color:var(--muted2);}
+  #search:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(79,131,240,.18);}
+  .search-wrap svg{position:absolute;left:17px;top:16px;color:var(--muted2);}
+  .filters{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;}
   .chip{
-    border:1.5px solid var(--line);background:var(--card);color:var(--ink-soft);
-    padding:7px 15px;border-radius:999px;font-size:0.88rem;cursor:pointer;
+    border:1.5px solid var(--line);background:var(--card);color:var(--muted);
+    padding:8px 17px;border-radius:999px;font-size:0.9rem;cursor:pointer;
     font-family:inherit;transition:.15s;
   }
-  .chip:hover{border-color:var(--gov);color:var(--gov);}
-  .chip.active{background:var(--gov);border-color:var(--gov);color:#fff;}
-  .chip:focus-visible{outline:3px solid var(--gov-soft);}
+  .chip:hover{border-color:var(--blue);color:var(--text);}
+  .chip.active{background:var(--grad);border-color:transparent;color:#fff;font-weight:600;}
 
-  /* Grid */
-  main{max-width:1080px;margin:0 auto;padding:24px 24px 60px;}
-  .cat{margin-top:34px;}
-  .cat-head{
-    display:flex;align-items:baseline;gap:10px;margin:0 0 14px;
-    border-bottom:2px solid var(--ink);padding-bottom:8px;
-  }
-  .cat-head h2{margin:0;font-size:1.2rem;font-weight:800;}
-  .cat-head span{font-size:0.82rem;color:var(--ink-soft);}
-  .grid{
-    display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;
-  }
+  /* 그리드 */
+  main{max-width:940px;margin:0 auto;padding:24px 24px 40px;}
+  .cat{margin-top:40px;}
+  .cat-head{display:flex;align-items:baseline;gap:11px;margin:0 0 16px;padding-left:2px;}
+  .cat-head h2{margin:0;font-size:1.25rem;font-weight:800;}
+  .cat-head .dot{width:9px;height:9px;border-radius:50%;background:var(--grad);flex:0 0 auto;}
+  .cat-head span{font-size:0.82rem;color:var(--muted2);}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px;}
   .site{
     display:block;background:var(--card);border:1.5px solid var(--line);
-    border-radius:12px;padding:16px 18px;text-decoration:none;
-    transition:.15s;position:relative;
+    border-radius:16px;padding:17px 19px;transition:.16s;position:relative;overflow:hidden;
   }
-  .site:hover{border-color:var(--gov);transform:translateY(-2px);box-shadow:0 6px 18px rgba(29,78,137,.1);}
-  .site:focus-visible{outline:3px solid var(--gov-soft);}
-  .site-name{font-weight:700;font-size:1rem;margin-bottom:3px;}
-  .site-desc{font-size:0.85rem;color:var(--ink-soft);}
-  .site-url{font-size:0.76rem;color:var(--gov);margin-top:8px;font-variant-numeric:tabular-nums;}
-  .arrow{position:absolute;top:16px;right:16px;opacity:.3;font-size:1.1rem;}
+  .site::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--grad);opacity:0;transition:.16s;}
+  .site:hover{border-color:transparent;background:var(--card-hover);transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(0,0,0,.35);}
+  .site:hover::before{opacity:1;}
+  .site-name{font-weight:700;font-size:1.02rem;margin-bottom:3px;}
+  .site-desc{font-size:0.86rem;color:var(--muted);}
+  .site-url{font-size:0.77rem;color:var(--blue-bright);margin-top:9px;font-variant-numeric:tabular-nums;}
+  .arrow{position:absolute;top:16px;right:16px;color:var(--muted2);font-size:1.05rem;transition:.16s;}
+  .site:hover .arrow{color:var(--blue-bright);transform:translate(2px,-2px);}
+  .empty{text-align:center;padding:50px 20px;color:var(--muted);display:none;}
 
-  .empty{
-    text-align:center;padding:50px 20px;color:var(--ink-soft);display:none;
-  }
-
-  footer{
-    border-top:1px solid var(--line);background:#ece9df;
-    font-size:0.82rem;color:var(--ink-soft);
-  }
-  .foot-inner{max-width:1080px;margin:0 auto;padding:24px;}
-  .foot-inner p{margin:6px 0;}
-  .foot-inner b{color:var(--seal);}
-
-  /* Suggestion box */
+  /* 건의 CTA */
   .suggest{
-    margin-top:44px;background:var(--card);border:1.5px solid var(--line);
-    border-radius:14px;padding:24px 22px;
+    max-width:940px;margin:44px auto 0;padding:34px 28px;text-align:center;
+    background:var(--grad-soft);border:1.5px solid var(--line);border-radius:20px;
   }
-  .suggest h2{margin:0 0 4px;font-size:1.15rem;font-weight:800;}
-  .suggest p.sub{margin:0 0 16px;font-size:0.86rem;color:var(--ink-soft);}
-  .suggest label{display:block;font-size:0.82rem;font-weight:600;margin:12px 0 5px;color:var(--ink-soft);}
-  .suggest input,.suggest textarea,.suggest select{
-    width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:9px;
-    font-family:inherit;font-size:0.95rem;color:var(--ink);background:#fff;
+  .suggest h2{margin:0 0 6px;font-size:1.3rem;font-weight:800;}
+  .suggest p{margin:0 0 20px;color:var(--muted);font-size:0.95rem;}
+  .btn-cta{
+    display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:#fff;
+    padding:14px 30px;border-radius:14px;font-size:1rem;font-weight:700;
+    box-shadow:0 12px 30px rgba(79,131,240,.4);transition:.16s;
   }
-  .suggest input:focus,.suggest textarea:focus,.suggest select:focus{
-    outline:3px solid var(--gov-soft);border-color:var(--gov);
-  }
-  .suggest textarea{resize:vertical;min-height:96px;}
-  .suggest-row{display:flex;gap:12px;flex-wrap:wrap;}
-  .suggest-row > div{flex:1;min-width:160px;}
-  .btn{
-    margin-top:16px;background:var(--gov);color:#fff;border:none;
-    padding:12px 22px;border-radius:9px;font-size:0.95rem;font-weight:700;
-    font-family:inherit;cursor:pointer;transition:.15s;
-  }
-  .btn:hover{background:#163c6b;}
-  .btn:disabled{opacity:.5;cursor:default;}
-  .btn:focus-visible{outline:3px solid var(--gov-soft);outline-offset:2px;}
-  .form-msg{margin-top:12px;font-size:0.88rem;display:none;}
-  .form-msg.ok{color:#1d7a46;display:block;}
-  .form-msg.err{color:var(--seal);display:block;}
+  .btn-cta:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(79,131,240,.5);}
 
-  /* Modal */
-  .modal-bg{
-    position:fixed;inset:0;background:rgba(19,35,59,.55);
-    display:none;align-items:center;justify-content:center;padding:20px;z-index:50;
-  }
+  /* 푸터 */
+  footer{margin-top:60px;border-top:1px solid var(--line);}
+  .foot-inner{max-width:940px;margin:0 auto;padding:28px 24px 46px;text-align:center;
+    font-size:0.84rem;color:var(--muted2);}
+  .foot-inner p{margin:6px 0;}
+  .foot-inner .copy{margin-top:16px;color:var(--muted);font-weight:600;}
+
+  /* 모달 */
+  .modal-bg{position:fixed;inset:0;background:rgba(6,12,24,.72);backdrop-filter:blur(4px);
+    display:none;align-items:center;justify-content:center;padding:20px;z-index:50;}
   .modal-bg.open{display:flex;}
-  .modal{
-    background:#fff;border-radius:16px;max-width:420px;width:100%;
-    padding:26px 24px;border-top:5px solid var(--seal);
-    box-shadow:0 20px 50px rgba(0,0,0,.25);
-  }
-  .modal h3{margin:0 0 8px;font-size:1.15rem;display:flex;align-items:center;gap:8px;}
-  .modal p{margin:0 0 6px;font-size:0.92rem;color:var(--ink-soft);}
-  .modal .target{
-    background:var(--gov-soft);color:var(--gov);font-weight:700;
-    padding:8px 12px;border-radius:8px;font-size:0.9rem;margin:14px 0;
-    word-break:break-all;
-  }
-  .modal-actions{display:flex;gap:10px;margin-top:18px;}
-  .modal-actions button{
-    flex:1;padding:12px;border-radius:9px;font-size:0.95rem;font-weight:700;
-    font-family:inherit;cursor:pointer;border:1.5px solid var(--line);
-  }
-  .btn-cancel{background:#fff;color:var(--ink-soft);}
-  .btn-cancel:hover{background:#f2f0e8;}
-  .btn-go{background:var(--gov);color:#fff;border-color:var(--gov);}
-  .btn-go:hover{background:#163c6b;}
-  .modal-actions button:focus-visible{outline:3px solid var(--gov-soft);outline-offset:2px;}
+  .modal{background:var(--bg2);border:1.5px solid var(--line);border-radius:20px;
+    max-width:430px;width:100%;padding:28px 26px;box-shadow:0 24px 60px rgba(0,0,0,.5);}
+  .modal .ic{width:52px;height:52px;border-radius:14px;background:var(--grad-soft);
+    display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:14px;}
+  .modal h3{margin:0 0 8px;font-size:1.2rem;}
+  .modal p{margin:0 0 6px;font-size:0.93rem;color:var(--muted);}
+  .modal .target{background:var(--card);color:var(--blue-bright);font-weight:700;
+    padding:10px 14px;border-radius:10px;font-size:0.9rem;margin:14px 0;word-break:break-all;}
+  .modal-actions{display:flex;gap:11px;margin-top:20px;}
+  .modal-actions button{flex:1;padding:13px;border-radius:12px;font-size:0.96rem;font-weight:700;
+    font-family:inherit;cursor:pointer;border:1.5px solid var(--line);transition:.15s;}
+  .btn-cancel{background:transparent;color:var(--muted);}
+  .btn-cancel:hover{background:var(--card);}
+  .btn-go{background:var(--grad);color:#fff;border-color:transparent;}
+  .btn-go:hover{filter:brightness(1.08);}
 
   @media(max-width:540px){
-    .head-text h1{font-size:1.3rem;}
+    .hero{padding-top:38px;}
+    .hero h1{font-size:1.85rem;}
     .grid{grid-template-columns:1fr;}
   }
 </style>
 </head>
 <body>
-<header>
-  <div class="head-inner">
-    <div class="seal" aria-hidden="true">🇰🇷</div>
-    <div class="head-text">
-      <h1>정부 사이트 모음</h1>
-      <p>한국 공공서비스 공식 사이트를 한곳에서 — 민원·세금·복지·교육까지</p>
-    </div>
-  </div>
-</header>
-<div class="notice">
-  ⚠ 이 사이트는 정부 공식 사이트가 <b>아닙니다</b>. 공개된 공식 사이트로 연결하는 비공식 링크 모음입니다.
+
+<div class="notice" id="notice">
+  <span class="badge">안내</span>
+  <span>이곳은 정부 공식 사이트가 <b>아닙니다</b>. 공식 사이트로 연결하는 비공식 링크 모음입니다.</span>
+  <button class="x" id="noticeX" aria-label="닫기">×</button>
 </div>
+
+<section class="hero">
+  <div class="logo-badge">
+    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+      <path d="M256 96 L410 190 L102 190 Z"/>
+      <rect x="112" y="202" width="288" height="20" rx="4"/>
+      <rect x="140" y="238" width="28" height="150" rx="5"/>
+      <rect x="200" y="238" width="28" height="150" rx="5"/>
+      <rect x="284" y="238" width="28" height="150" rx="5"/>
+      <rect x="344" y="238" width="28" height="150" rx="5"/>
+      <rect x="104" y="398" width="304" height="20" rx="5"/>
+      <rect x="88" y="424" width="336" height="22" rx="6"/>
+    </svg>
+  </div>
+  <h1>정부 사이트 <span class="g">모음</span></h1>
+  <p>흩어진 한국 공공서비스 공식 사이트를 한곳에서. 민원·세금·복지·교육·부동산·생활까지 72곳을 분야별로 정리했습니다.</p>
+</section>
 
 <div class="controls">
   <div class="search-wrap">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
-    <input id="search" type="search" placeholder="사이트 이름 검색 (예: 홈택스, 정부24)" aria-label="사이트 검색">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+    <input id="search" type="search" placeholder="사이트 검색 (예: 홈택스, 정부24, 복지로)" aria-label="사이트 검색">
   </div>
   <div class="filters" id="filters" role="group" aria-label="분야 필터"></div>
 </div>
@@ -209,14 +191,15 @@
 
   <section class="suggest">
     <h2>건의사항이 있으신가요?</h2>
-    <p class="sub">추가했으면 하는 사이트, 오류 제보, 의견을 보내주세요.</p>
-    <a class="btn" href="suggest.html" style="display:inline-block;text-decoration:none;">건의사항 보내기 →</a>
+    <p>추가했으면 하는 사이트, 오류 제보, 의견을 보내주세요.</p>
+    <a class="btn-cta" href="suggest.html">건의사항 보내기 →</a>
   </section>
 </main>
 
 <div class="modal-bg" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="modal">
-    <h3 id="modal-title">↗ 외부 사이트로 이동</h3>
+    <div class="ic">↗</div>
+    <h3 id="modal-title">외부 사이트로 이동</h3>
     <p>이곳은 정부 공식 사이트가 아닌 <b>비공식 링크 모음</b>입니다. 아래 공식 사이트로 이동합니다.</p>
     <div class="target" id="modal-url"></div>
     <p style="font-size:0.84rem;">주소가 맞는지 확인하고, 공식 사이트 외에는 개인정보를 입력하지 마세요.</p>
@@ -230,10 +213,11 @@
 <footer>
   <div class="foot-inner">
     <p>비상업적 개인 정리용 페이지입니다. 링크나 정보는 변경될 수 있으니 최종 확인은 공식 사이트에서 하시기 바랍니다.</p>
+    <p class="copy">© 2026 한글과 코딩 · Hangul &amp; Coding</p>
   </div>
 </footer>
 
-<script type="module">
+<script>
 const DATA = [
   { cat:"민원·행정", note:"증명서 발급·정부 민원", sites:[
     {n:"정부24", d:"각종 민원·증명서 발급 통합창구", u:"gov.kr"},
@@ -321,14 +305,13 @@ const DATA = [
   ]},
 ];
 
-const catalog = document.getElementById('catalog');
-const filters = document.getElementById('filters');
-const search = document.getElementById('search');
-const empty = document.getElementById('empty');
-let activeCat = "전체";
+const catalog=document.getElementById('catalog');
+const filters=document.getElementById('filters');
+const search=document.getElementById('search');
+const empty=document.getElementById('empty');
+let activeCat="전체";
 
-// build filter chips
-const cats = ["전체", ...DATA.map(d=>d.cat)];
+const cats=["전체",...DATA.map(d=>d.cat)];
 cats.forEach(c=>{
   const b=document.createElement('button');
   b.className='chip'+(c==="전체"?' active':'');
@@ -339,52 +322,40 @@ cats.forEach(c=>{
 
 function render(){
   const q=search.value.trim().toLowerCase();
-  catalog.innerHTML='';
-  let total=0;
+  catalog.innerHTML='';let total=0;
   DATA.forEach(group=>{
-    if(activeCat!=="전체" && group.cat!==activeCat) return;
-    const matches=group.sites.filter(s=>
-      !q || s.n.toLowerCase().includes(q) || s.d.toLowerCase().includes(q) || s.u.toLowerCase().includes(q)
-    );
-    if(matches.length===0) return;
+    if(activeCat!=="전체"&&group.cat!==activeCat)return;
+    const matches=group.sites.filter(s=>!q||s.n.toLowerCase().includes(q)||s.d.toLowerCase().includes(q)||s.u.toLowerCase().includes(q));
+    if(matches.length===0)return;
     total+=matches.length;
-    const sec=document.createElement('section');
-    sec.className='cat';
-    sec.innerHTML=`<div class="cat-head"><h2>${group.cat}</h2><span>${group.note}</span></div>`;
+    const sec=document.createElement('section');sec.className='cat';
+    sec.innerHTML=`<div class="cat-head"><span class="dot"></span><h2>${group.cat}</h2><span>${group.note}</span></div>`;
     const grid=document.createElement('div');grid.className='grid';
     matches.forEach(s=>{
-      const a=document.createElement('a');
-      a.className='site';a.href='https://'+s.u;a.target='_blank';a.rel='noopener noreferrer';
-      a.dataset.url=s.u;a.dataset.name=s.n;
+      const a=document.createElement('a');a.className='site';a.href='https://'+s.u;
       a.innerHTML=`<span class="arrow">↗</span><div class="site-name">${s.n}</div><div class="site-desc">${s.d}</div><div class="site-url">${s.u}</div>`;
       a.addEventListener('click',e=>{e.preventDefault();openModal(s.n,s.u);});
       grid.appendChild(a);
     });
-    sec.appendChild(grid);
-    catalog.appendChild(sec);
+    sec.appendChild(grid);catalog.appendChild(sec);
   });
-  empty.style.display = total===0 ? 'block':'none';
+  empty.style.display=total===0?'block':'none';
 }
-search.addEventListener('input',render);
-render();
+search.addEventListener('input',render);render();
 
-/* ---------- 외부 이동 경고 모달 ---------- */
 const modal=document.getElementById('modal');
 const modalUrl=document.getElementById('modal-url');
 const modalGo=document.getElementById('modal-go');
 const modalCancel=document.getElementById('modal-cancel');
 let pendingUrl=null;
-function openModal(name,url){
-  pendingUrl='https://'+url;
-  modalUrl.textContent=name+' — '+url;
-  modal.classList.add('open');
-  modalGo.focus();
-}
+function openModal(name,url){pendingUrl='https://'+url;modalUrl.textContent=name+' — '+url;modal.classList.add('open');modalGo.focus();}
 function closeModal(){modal.classList.remove('open');pendingUrl=null;}
 modalGo.onclick=()=>{if(pendingUrl)window.open(pendingUrl,'_blank','noopener');closeModal();};
 modalCancel.onclick=closeModal;
 modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});
+
+document.getElementById('noticeX').onclick=()=>document.getElementById('notice').classList.add('hide');
 </script>
 </body>
 </html>
