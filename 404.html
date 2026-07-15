@@ -3,37 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="logo-red.png" type="image/png">
-<title>404 - 페이지를 찾을 수 없습니다</title>
+<link rel="icon" href="/img/logo_red.png" type="image/png">
+<title>404 · 페이지를 찾을 수 없습니다</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:linear-gradient(135deg,#1a2235,#2d3d5c);min-height:100vh;display:flex;align-items:center;justify-content:center;color:#fff;padding:20px}
-.box{text-align:center;max-width:480px}
-.code{font-size:110px;font-weight:800;line-height:1;background:linear-gradient(135deg,#5b8def,#34c98a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
-h1{font-size:24px;margin-bottom:14px}
-.sub{font-size:15px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:32px}
+.card{background:#fff;color:#1a1d23;border-radius:20px;padding:48px 44px;width:480px;max-width:94vw;box-shadow:0 32px 80px rgba(0,0,0,.4);text-align:center}
+.logo{width:64px;height:64px;margin:0 auto 24px;border-radius:16px;overflow:hidden;background:#5b8def;display:flex;align-items:center;justify-content:center}
+.logo img{width:100%;height:100%;object-fit:cover}
+.logo .fb{font-size:26px;font-weight:800;color:#fff}
+.code{font-size:64px;font-weight:800;letter-spacing:-2px;background:linear-gradient(135deg,#5b8def,#34c98a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:14px}
+
+h1{font-size:20px;margin-bottom:14px}
+.msg{font-size:14px;color:#6b7280;line-height:1.8;margin-bottom:34px}
 .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn{padding:12px 24px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;text-decoration:none;font-size:14px;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:8px}
-.btn:hover{background:rgba(255,255,255,.16)}
-.btn.primary{background:#5b8def;border-color:#5b8def}.btn.primary:hover{background:#4a7ce0}
-.icon{font-size:60px;margin-bottom:18px}
-.search{display:flex;gap:8px;margin:0 auto 28px;max-width:320px}
-.search input{flex:1;padding:10px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:14px;font-family:inherit;outline:none}
-.search input::placeholder{color:rgba(255,255,255,.4)}
-.float{animation:float 3s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:12px;border:1px solid #e2e4e9;background:#fff;color:#1a1d23;text-decoration:none;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;transition:all .15s}
+.btn:hover{background:#f6f8fa}
+.btn.primary{background:#5b8def;border-color:#5b8def;color:#fff}
+.btn.primary:hover{background:#4a7ce0}
+.foot{margin-top:30px;font-size:12px;color:#b6bcc9;line-height:1.7}
+.detail-toggle{margin-top:22px;background:none;border:none;color:#9ca3af;font-size:12px;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:5px;padding:4px 8px}
+.detail-toggle:hover{color:#6b7280}
+.detail-toggle .arrow{transition:transform .2s}
+.detail-toggle.open .arrow{transform:rotate(180deg)}
+.detail{max-height:0;overflow:hidden;transition:max-height .3s ease,margin .3s;text-align:left;background:#f6f8fa;border-radius:10px;margin-top:0}
+.detail.open{max-height:400px;margin-top:14px;padding:16px 18px}
+.detail-row{display:flex;justify-content:space-between;gap:12px;font-size:12px;padding:5px 0;border-bottom:1px solid #e8ebf0}
+.detail-row span{color:#9ca3af;flex-shrink:0}
+.detail-row b{color:#4b5563;font-weight:600;text-align:right;word-break:break-all;font-family:'D2Coding','Consolas',monospace;font-size:11px}
+.detail-desc{font-size:12px;color:#6b7280;line-height:1.7;margin-top:12px;padding-top:12px;border-top:1px solid #e8ebf0}
 </style>
 </head>
 <body>
-<div class="box">
-  <div class="icon float">!</div>
-  <div class="code">404</div>
+<div class="card">
+  <div class="logo"><img src="logo.png" alt="로고" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=fb>한</span>'"></div>
   <h1>페이지를 찾을 수 없습니다</h1>
-  <div class="sub">요청하신 페이지가 존재하지 않거나<br>이동되었을 수 있습니다.</div>
+  <div class="msg">
+    죄송합니다. 찾으시는 페이지가 존재하지 않거나<br>
+    주소가 변경되었을 수 있습니다.
+  </div>
   <div class="btns">
-    <a href="/" class="btn primary">처음으로</a>
-    <button class="btn" onclick="history.back()">← 이전 페이지</button>
+    <a href="/" class="btn primary">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+      홈으로 돌아가기
+    </a>
+    <button class="btn" onclick="history.back()">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      이전 페이지
+    </button>
+  </div>
+  <button class="detail-toggle" id="detailBtn" onclick="toggleDetail()">
+    <svg class="arrow" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+    문제 자세히 보기
+  </button>
+  <div class="detail" id="detail">
+    <div class="detail-row"><span>오류 코드</span><b>404 Not Found</b></div>
+    <div class="detail-row"><span>요청 주소</span><b id="d-url">-</b></div>
+    <div class="detail-row"><span>참조 페이지</span><b id="d-ref">-</b></div>
+    <div class="detail-row"><span>발생 시각</span><b id="d-time">-</b></div>
+    <div class="detail-desc">서버가 요청하신 주소에 해당하는 파일을 찾지 못했습니다. 주소의 철자나 대소문자, 확장자(.html)를 다시 확인해 주시길 바랍니다.</div>
+  </div>
+  <div class="foot">
+    문제가 계속되면 주소를 다시 한번 확인해 주시길 바랍니다.<br>
+    이용해 주셔서 대단히 감사합니다.
   </div>
 </div>
+<script>
+function toggleDetail(){
+  document.getElementById('detail').classList.toggle('open');
+  document.getElementById('detailBtn').classList.toggle('open');
+}
+// 상세 정보 채우기
+document.getElementById('d-url').textContent = location.href;
+document.getElementById('d-ref').textContent = document.referrer || '(직접 접속)';
+document.getElementById('d-time').textContent = new Date().toLocaleString('ko-KR');
+</script>
 </body>
 </html>
