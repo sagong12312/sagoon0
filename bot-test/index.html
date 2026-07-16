@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>보안 확인 중...</title>
+<link rel="icon" type="image/png" href="../img/logo.png">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<style>
+  :root{
+    --navy:#1a2740;--ink:#1e2a44;--muted:#5b6b86;--muted2:#8a99b3;
+    --card:#fff;--soft:#f3f6fc;--line:#e5eaf3;
+    --blue:#4f83f0;--violet:#7b6cf0;
+    --grad:linear-gradient(120deg,#4f83f0,#7b6cf0);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+    background:radial-gradient(1000px 500px at 50% -80px,#2c3f63,var(--navy));
+    color:var(--ink);line-height:1.6;min-height:100vh;display:flex;flex-direction:column;}
+  .wrap{flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:24px 20px;}
+  .card{background:var(--card);border-radius:24px;width:100%;max-width:440px;
+    box-shadow:0 26px 60px rgba(10,18,38,.45);padding:44px 34px 36px;text-align:center;}
+  .logo{width:82px;height:82px;border-radius:22px;margin:0 auto 22px;overflow:hidden;
+    box-shadow:0 12px 30px rgba(79,131,240,.4);}
+  .logo img{width:100%;height:100%;object-fit:cover;display:block;}
+  h1{margin:0 0 10px;font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;}
+  h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  p{margin:0;color:var(--muted);font-size:0.96rem;}
+  .shield{display:inline-flex;align-items:center;gap:7px;margin:20px 0 18px;font-size:0.84rem;color:var(--muted2);}
+  .cf{display:flex;justify-content:center;margin:6px 0;min-height:66px;align-items:center;}
+  .status{margin-top:16px;font-size:0.9rem;color:var(--muted);min-height:22px;}
+  .status.ok{color:var(--blue);font-weight:600;}
+  .status.err{color:#d6502f;}
+  .spinner{display:inline-block;width:15px;height:15px;border:2px solid var(--line);
+    border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;vertical-align:-3px;margin-right:6px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .bottom-banner{flex:0 0 auto;background:#fff;min-height:56px;display:flex;align-items:center;
+    justify-content:center;padding:16px 20px;font-size:0.88rem;color:var(--muted2);text-align:center;
+    box-shadow:0 -4px 20px rgba(10,18,38,.25);}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="logo"><img src="../img/logo.png" alt="로고"></div>
+      <h1>사람인지 <//span class="g">확인 중입니다</span></h1>
+      <p>계속하기 전에 잠시 확인하고 있습니다.</p>
+      <div class="shield">보안 확인 후 이동합니다</div>
+      <div class="cf">
+        <div class="cf-turnstile" data-sitekey="YOUR_SITE_KEY"
+             data-callback="onVerify" data-error-callback="onError" data-theme="light"></div>
+      </div>
+      <div class="status" id="status"><span class="spinner"></span>확인을 기다리는 중…</div>
+    </div>
+  </div>
+  <div class="bottom-banner" id="bottomBanner"></div>
+<script>
+  const DEST="../main/";
+  function onVerify(t){const s=document.getElementById('status');s.className='status ok';s.textContent='확인 완료. 이동합니다…';setTimeout(()=>{location.href=DEST;},700);}
+  function onError(){const s=document.getElementById('status');s.className='status err';s.textContent='확인에 실패했습니다. 새로고침 후 다시 시도해주세요.';}
+</script>
+</body>
+</html>
