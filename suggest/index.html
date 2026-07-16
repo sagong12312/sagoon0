@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>건의사항 보내기 · 정부 사이트 모음</title>
+<link rel="icon" type="image/png" href="../img/logo.png">
+<style>
+  :root{
+    --navy:#1a2740;--ink:#1e2a44;--muted:#5b6b86;--muted2:#8a99b3;
+    --card:#fff;--soft:#f3f6fc;--line:#e5eaf3;
+    --blue:#4f83f0;--violet:#7b6cf0;
+    --grad:linear-gradient(120deg,#4f83f0,#7b6cf0);
+    --ok:#1d9d5a;--err:#d6502f;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+    background:radial-gradient(1000px 500px at 50% -80px,#2c3f63,var(--navy));
+    color:var(--ink);line-height:1.6;min-height:100vh;display:flex;flex-direction:column;}
+  header{flex:0 0 auto;max-width:600px;width:100%;margin:0 auto;padding:20px 24px 0;
+    display:flex;justify-content:space-between;align-items:center;gap:12px;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.02rem;color:#fff;}
+  .brand .badge{width:36px;height:36px;border-radius:10px;overflow:hidden;box-shadow:0 8px 20px rgba(79,131,240,.4);}
+  .brand .badge img{width:100%;height:100%;object-fit:cover;display:block;}
+  .back{color:#c3cfe4;font-size:0.86rem;transition:.15s;}
+  .back:hover{color:#fff;}
+  .wrap{flex:1 1 auto;display:flex;align-items:flex-start;justify-content:center;padding:28px 20px;}
+  .card{background:var(--card);border-radius:22px;width:100%;max-width:600px;
+    box-shadow:0 26px 60px rgba(10,18,38,.4);padding:32px 30px;}
+  .card h1{margin:0 0 6px;font-size:1.5rem;font-weight:800;text-align:center;}
+  .card h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .card .sub{margin:0 0 22px;color:var(--muted);font-size:0.94rem;text-align:center;}
+  label{display:block;font-size:0.84rem;font-weight:600;margin:14px 0 6px;color:var(--muted);}
+  input,textarea,select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:11px;
+    font-family:inherit;font-size:0.95rem;color:var(--ink);background:#fff;}
+  input::placeholder,textarea::placeholder{color:#aab6cc;}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(79,131,240,.14);}
+  textarea{resize:vertical;min-height:110px;}
+  select{appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235b6b86' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;}
+  .row{display:flex;gap:13px;flex-wrap:wrap;}
+  .row>div{flex:1;min-width:170px;}
+  .btn{margin-top:22px;width:100%;background:var(--grad);color:#fff;border:none;padding:15px;border-radius:13px;
+    font-size:1rem;font-weight:700;font-family:inherit;cursor:pointer;transition:.16s;box-shadow:0 12px 28px rgba(79,131,240,.35);}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(79,131,240,.45);}
+  .btn:disabled{opacity:.5;cursor:default;transform:none;box-shadow:none;}
+  .form-msg{margin-top:16px;font-size:0.92rem;display:none;padding:12px 16px;border-radius:11px;}
+  .form-msg.ok{display:block;color:var(--ok);background:#e6f7ee;border:1px solid #b6e6cc;}
+  .form-msg.err{display:block;color:var(--err);background:#fdece7;border:1px solid #f6cabb;}
+  .form-msg.info{display:block;color:var(--muted);background:var(--soft);}
+  .form-msg a{color:var(--blue);}
+  .bottom-banner{flex:0 0 auto;background:#fff;min-height:56px;display:flex;align-items:center;
+    justify-content:center;padding:16px 20px;font-size:0.88rem;color:var(--muted2);text-align:center;
+    box-shadow:0 -4px 20px rgba(10,18,38,.25);}
+  @media(max-width:560px){.card h1{font-size:1.3rem;}}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="../main/"><span class="badge"><img src="../img/logo.png" alt="로고"></span>정부 사이트 모음</a>
+  <a class="back" href="../main/">← 목록으로</a>
+</header>
+<div class="wrap">
+  <div class="card">
+    <h1>건의사항 <span class="g">보내기</span></h1>
+    <p class="sub">추가했으면 하는 사이트, 잘못된 링크 제보, 기타 의견을 보내주세요.</p>
+    <div class="row">
+      <div><label for="s-name">이름 (선택)</label><input id="s-name" type="text" maxlength="30" placeholder="닉네임"></div>
+      <div><label for="s-email">이메일 (선택)</label><input id="s-email" type="email" maxlength="80" placeholder="reply@example.com"></div>
+    </div>
+    <label for="s-type">유형</label>
+    <select id="s-type"><option>사이트 추가 제안</option><option>오류·잘못된 링크 제보</option><option>기타 의견</option></select>
+    <label for="s-body">내용</label>
+    <textarea id="s-body" maxlength="1000" placeholder="건의 내용을 적어주세요"></textarea>
+    <button class="btn" id="s-submit">건의사항 제출</button>
+    <div class="form-msg" id="s-msg"></div>
+  </div>
+</div>
+<div class="bottom-banner" id="bottomBanner"></div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const firebaseConfig = {
+  apiKey:"AIzaSyB6_BJlmQx8pl419tiv5etaYYQ7EQpdXTA",authDomain:"korea-gov-collect.firebaseapp.com",
+  projectId:"korea-gov-collect",storageBucket:"korea-gov-collect.firebasestorage.app",
+  messagingSenderId:"262187977125",appId:"1:262187977125:web:72033379e8aa310280004c",measurementId:"G-V7GXJ3KSBW"
+};
+let db=null;try{db=getFirestore(initializeApp(firebaseConfig));}catch(err){console.warn(err);}
+const sBtn=document.getElementById('s-submit'),sMsg=document.getElementById('s-msg');
+sBtn.addEventListener('click',async()=>{
+  const body=document.getElementById('s-body').value.trim();
+  if(!body){showMsg('건의 내용을 입력해주세요.','err');return;}
+  if(!db){showMsg('Firebase 설정이 아직 연결되지 않았습니다.','err');return;}
+  sBtn.disabled=true;showMsg('전송 중…','info');
+  try{
+    await addDoc(collection(db,'suggestions'),{name:document.getElementById('s-name').value.trim()||'익명',
+      email:document.getElementById('s-email').value.trim()||'',type:document.getElementById('s-type').value,body:body,createdAt:serverTimestamp()});
+    showMsg('건의사항이 접수되었습니다. 감사합니다! <a href="../main/">← 목록으로 돌아가기</a>','ok');
+    document.getElementById('s-name').value='';document.getElementById('s-email').value='';document.getElementById('s-body').value='';
+  }catch(err){console.error(err);showMsg('전송에 실패했습니다. 잠시 후 다시 시도해주세요.','err');}
+  finally{sBtn.disabled=false;}
+});
+function showMsg(t,c){sMsg.innerHTML=t;sMsg.className='form-msg '+(c||'');}
+</script>
+</body>
+</html>
